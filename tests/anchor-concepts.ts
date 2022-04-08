@@ -1,6 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import { Program } from "@project-serum/anchor";
 import { AnchorConcepts } from "../target/types/anchor_concepts";
+import {Proposals} from "./models/proposal_enum"
 
 describe("anchor-concepts", () => {
   // Configure the client to use the local cluster.
@@ -8,9 +9,46 @@ describe("anchor-concepts", () => {
 
   const program = anchor.workspace.AnchorConcepts as Program<AnchorConcepts>;
 
-  it("Is initialized!", async () => {
+  const payer = anchor.web3.Keypair.generate();
+
+  it("Is initialized first!", async () => {
+
+    const airdrop_tx = await program.provider.connection.requestAirdrop(
+      payer.publicKey,
+      2000000000
+    );
+    
     // Add your test here.
-    const tx = await program.rpc.initialize({});
-    console.log("Your transaction signature", tx);
+    const initialize_tx = await program.rpc.initialize(
+      {first: {}},
+      {
+        accounts: {
+        payer: payer.publicKey,
+        },
+        signers:[ payer ]
+      }
+    );
+    console.log("Your transaction signature", initialize_tx);
   });
+
+  it("Is initialized second!", async () => {
+
+    const airdrop_tx = await program.provider.connection.requestAirdrop(
+      payer.publicKey,
+      2000000000
+    );
+    
+    // Add your test here.
+    const initialize_tx = await program.rpc.initialize(
+      {second: {}},
+      {
+        accounts: {
+        payer: payer.publicKey,
+        },
+        signers:[ payer ]
+      }
+    );
+    console.log("Your transaction signature", initialize_tx);
+  });
+
 });
