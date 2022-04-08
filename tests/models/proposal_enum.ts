@@ -1,4 +1,4 @@
 export enum Proposals {
-    First,
-    Second,
+    first,
+    second,
 }

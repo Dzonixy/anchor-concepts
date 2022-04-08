@@ -1,7 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import { Program } from "@project-serum/anchor";
 import { AnchorConcepts } from "../target/types/anchor_concepts";
-import {Proposals} from "./models/proposal_enum"
+import { Proposals } from "./models/proposal_enum"
 
 describe("anchor-concepts", () => {
   // Configure the client to use the local cluster.
@@ -37,10 +37,33 @@ describe("anchor-concepts", () => {
       payer.publicKey,
       2000000000
     );
-    
-    // Add your test here.
+
+    const proposals = [{first: {}}, {second: {}}];
+   
     const initialize_tx = await program.rpc.initialize(
-      {second: {}},
+      proposals[1],
+      {
+        accounts: {
+        payer: payer.publicKey,
+        },
+        signers:[ payer ]
+      }
+    );
+    console.log("Your transaction signature", initialize_tx);
+  });
+
+  it("Is initialized third!", async () => {
+
+    const airdrop_tx = await program.provider.connection.requestAirdrop(
+      payer.publicKey,
+      2000000000
+    );
+
+    let proposals = new Map<"third", Object>();
+    proposals.set("third", {third: {}})
+
+    const initialize_tx = await program.rpc.initialize(
+      proposals.get("third"),
       {
         accounts: {
         payer: payer.publicKey,
