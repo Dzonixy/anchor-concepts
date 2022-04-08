@@ -59,7 +59,7 @@ describe("anchor-concepts", () => {
       2000000000
     );
 
-    let proposals = new Map<"third", Object>();
+    let proposals = new Map<string, Object>();
     proposals.set("third", {third: {}})
 
     const initialize_tx = await program.rpc.initialize(
