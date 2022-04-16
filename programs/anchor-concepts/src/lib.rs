@@ -23,6 +23,7 @@ pub mod anchor_concepts {
             Proposals::First => print_first(),
             Proposals::Second => print_second(),
             Proposals::Third => print_third(),
+            Proposals::Fourth => print_fourth(),
         }
         Ok(())
     }
@@ -33,4 +34,5 @@ pub enum Proposals {
     First,
     Second,
     Third,
+    Fourth,
 }
