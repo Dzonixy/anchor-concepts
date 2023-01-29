@@ -13,3 +13,11 @@ export class Proposals {
     this.fourth = { fourth: {} };
   }
 }
+
+export class ProposalsV2 {
+  first: Object = { first: {} };
+  second: Object = { second: {} };
+  third: Object = { third: {} };
+  fourth: Object = { fourth: {} };
+  fifth: Object = { fifth: {} };
+}

@@ -1,6 +1,6 @@
 import * as anchor from "@project-serum/anchor";
 import { AnchorConcepts } from "../target/types/anchor_concepts";
-import { Proposals } from "./models/proposal_enum";
+import { Proposals, ProposalsV2 } from "./models/proposal_enum";
 
 describe("anchor-concepts", () => {
   // Configure the client to use the local cluster.
